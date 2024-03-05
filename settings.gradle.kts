@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Yumyard"
 include(":app")
+include(":feature:authentication")
