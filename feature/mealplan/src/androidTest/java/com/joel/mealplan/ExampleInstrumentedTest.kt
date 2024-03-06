@@ -1,4 +1,4 @@
-package com.joel.mylibrary
+package com.joel.mealplan
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

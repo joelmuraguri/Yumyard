@@ -1,4 +1,4 @@
-package com.joel.mylibrary
+package com.joel.mealplan
 
 import org.junit.Test
 

@@ -17,4 +17,10 @@ android {
 dependencies{
     implementation(project(":core:design"))
     implementation(project(":feature:authentication"))
+    implementation(project(":feature:discover"))
+    implementation(project(":feature:search"))
+    implementation(project(":feature:mealplan"))
+    implementation(project(":feature:favourites"))
+    implementation(project(":feature:search"))
+    implementation(project(":feature:profile"))
 }

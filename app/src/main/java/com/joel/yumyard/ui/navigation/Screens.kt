@@ -37,3 +37,10 @@ sealed class Screens(
     )
 
 }
+
+val bottomBarNavigationList = listOf(
+    Screens.Discover,
+    Screens.Search,
+    Screens.Favorites,
+    Screens.Profile
+)
