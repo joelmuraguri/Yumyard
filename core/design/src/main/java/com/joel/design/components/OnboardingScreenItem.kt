@@ -1,4 +1,17 @@
 package com.joel.design.components
 
-class OnboardingScreenItem {
+import androidx.compose.foundation.layout.Column
+import androidx.compose.runtime.Composable
+
+@Composable
+fun OnboardingScreenItem(
+    image : Int,
+    title : Int,
+    description : Int
+) {
+    
+    Column {
+
+    }
+
 }

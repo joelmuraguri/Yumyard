@@ -16,4 +16,5 @@ android {
 
 dependencies{
     implementation(project(":core:design"))
+    implementation(project(":feature:authentication"))
 }
