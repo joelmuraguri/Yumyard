@@ -24,3 +24,5 @@ rootProject.name = "Yumyard"
 include(":app")
 include(":feature:authentication")
 include(":core:design")
+include(":feature:discover")
+include(":feature:mealplan")
