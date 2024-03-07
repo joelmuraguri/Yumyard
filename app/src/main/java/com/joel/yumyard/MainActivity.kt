@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.FloatingActionButton
@@ -17,7 +18,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
 import com.joel.authentication.onboarding.OnboardingScreen
 import com.joel.design.icons.UzitoIcons
@@ -76,9 +79,18 @@ fun MealPlanFAB(
         onClick = {
             onClick()
         },
-        shape = RoundedCornerShape(50)
+        shape = RoundedCornerShape(50),
+        containerColor = Color(0xFF00B969),
+        modifier = Modifier
+            .size(70.dp)
     ) {
-        Icon(painter = painterResource(id = UzitoIcons.add), contentDescription = null)
+        Icon(
+            painter = painterResource(id = UzitoIcons.add),
+            contentDescription = null,
+            tint = Color.White,
+            modifier = Modifier
+                .size(30.dp)
+        )
     }
 
 }

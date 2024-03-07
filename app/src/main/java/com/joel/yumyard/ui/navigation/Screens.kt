@@ -17,7 +17,7 @@ sealed class Screens(
     data object Search : Screens(
         route = "search_route",
         icon = UzitoIcons.search,
-        title = com.joel.design.R.string.discover_title
+        title = com.joel.design.R.string.search_title
     )
     data object Favorites : Screens(
         route = "favorites_route",

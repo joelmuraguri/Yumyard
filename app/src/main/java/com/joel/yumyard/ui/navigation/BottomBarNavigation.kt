@@ -1,16 +1,22 @@
 package com.joel.yumyard.ui.navigation
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -19,7 +25,9 @@ import com.joel.yumyard.ui.theme.UzitoTheme
 
 @Composable
 fun BottomNavigationBar(navController: NavHostController) {
-    BottomAppBar() {
+    BottomAppBar(
+        containerColor = Color.White
+    ) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentDestination = navBackStackEntry?.destination
 
@@ -29,26 +37,39 @@ fun BottomNavigationBar(navController: NavHostController) {
             NavigationBarItem(
                 selected = selected,
                 icon = {
-                    Icon(
-                        painter = painterResource(id = destination.icon!!),
-                        contentDescription = stringResource(id = destination.title!!)
-                    )
+                    Box(
+                        modifier = Modifier.size(37.dp),
+//                            .background(
+////                                color = if (selected) Color(0xFF00B969) else Color.Transparent,
+//                                shape = RoundedCornerShape(10.dp)
+//                            ),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Icon(
+                            painter = painterResource(id = destination.icon!!),
+                            contentDescription = stringResource(id = destination.title!!),
+                            tint = if (selected) Color(0xFF00B969) else Color(0xFF082D54)
+                        )
+                    }
                 },
-                label = { Text(text = stringResource(id = destination.title!!)) },
+                label = {  },
                 alwaysShowLabel = true,
                 onClick = {
                     navController.navigate(destination.route) {
                         launchSingleTop = true
                         restoreState = true
-                        popUpTo(Screens.Discover.route)
+                        popUpTo(Screens.Discover.route){
+                            inclusive = true
+                            saveState = true
+                        }
                     }
                 },
                 colors = NavigationBarItemDefaults.colors(
-//                    selectedIconColor = orange20,
-                    unselectedIconColor = MaterialTheme.colorScheme.onBackground,
-//                    selectedTextColor = orange20,
-                    unselectedTextColor = MaterialTheme.colorScheme.onBackground,
-//                    indicatorColor = MaterialTheme.colorScheme.background.copy(alpha = 0f)
+                    selectedIconColor = Color.White,
+                    unselectedIconColor = Color(0xFF00B969),
+                    selectedTextColor = Color(0xFF00B969),
+                    unselectedTextColor = Color(0xFF00B969),
+                    indicatorColor = Color.White
                 )
             )
         }
