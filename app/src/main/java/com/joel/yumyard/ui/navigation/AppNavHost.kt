@@ -16,6 +16,7 @@ import com.joel.search.SearchScreen
 fun AppNavHost(
     navController: NavHostController,
     updateBottomBarState: (Boolean) -> Unit,
+    updateFABState : (Boolean) -> Unit,
     startDestination : String
 ){
 
@@ -24,26 +25,32 @@ fun AppNavHost(
         startDestination = startDestination
     ){
         composable(route = Screens.Onboarding.route){
+            updateFABState(false)
             updateBottomBarState(false)
             OnboardingScreen()
         }
         composable(route = Screens.Discover.route){
+            updateFABState(true)
             updateBottomBarState(true)
             DiscoverScreen()
         }
         composable(route = Screens.Search.route){
             updateBottomBarState(true)
+            updateFABState(true)
             SearchScreen()
         }
         composable(route = Screens.Favorites.route){
+            updateFABState(true)
             updateBottomBarState(true)
             FavouritesScreen()
         }
         composable(route = Screens.Profile.route){
+            updateFABState(true)
             updateBottomBarState(true)
             ProfileScreen()
         }
         composable(route = Screens.MealPlan.route){
+            updateFABState(false)
             updateBottomBarState(false)
             MealPlanScreen()
         }

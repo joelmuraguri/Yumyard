@@ -7,14 +7,20 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.FabPosition
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.navigation.compose.rememberNavController
 import com.joel.authentication.onboarding.OnboardingScreen
+import com.joel.design.icons.UzitoIcons
 import com.joel.yumyard.ui.navigation.AppNavHost
 import com.joel.yumyard.ui.navigation.BottomNavigationBar
 import com.joel.yumyard.ui.navigation.Screens
@@ -36,10 +42,16 @@ class MainActivity : ComponentActivity() {
 fun YumyardApp(startDestination : String){
     val navController = rememberNavController()
     val bottomBarState = rememberSaveable { (mutableStateOf(true)) }
+    val fabState = rememberSaveable { (mutableStateOf(true)) }
+
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        bottomBar = { if (bottomBarState.value) BottomNavigationBar(navController) }
+        bottomBar = { if (bottomBarState.value) BottomNavigationBar(navController) },
+        floatingActionButton = { if (fabState.value) MealPlanFAB {
+            navController.navigate(Screens.MealPlan.route)
+        } },
+        floatingActionButtonPosition = FabPosition.Center
     ) { padding ->
         Column(
             modifier = Modifier
@@ -48,9 +60,25 @@ fun YumyardApp(startDestination : String){
             AppNavHost(
                 navController = navController,
                 updateBottomBarState = { bottomBarState.value = it },
-                startDestination = startDestination
+                startDestination = startDestination,
+                updateFABState =  { fabState.value = it }
             )
         }
     }
 }
 
+@Composable
+fun MealPlanFAB(
+    onClick : () -> Unit
+){
+
+    FloatingActionButton(
+        onClick = {
+            onClick()
+        },
+        shape = RoundedCornerShape(50)
+    ) {
+        Icon(painter = painterResource(id = UzitoIcons.add), contentDescription = null)
+    }
+
+}
