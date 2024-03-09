@@ -16,6 +16,7 @@ android {
 
 dependencies{
     implementation(project(":core:design"))
+    implementation(project(":core:remote"))
     implementation(project(":feature:authentication"))
     implementation(project(":feature:discover"))
     implementation(project(":feature:search"))
