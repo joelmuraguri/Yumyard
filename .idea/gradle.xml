@@ -25,6 +25,7 @@
             <option value="$PROJECT_DIR$/build-logic" />
             <option value="$PROJECT_DIR$/build-logic/conventions" />
             <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/core/data" />
             <option value="$PROJECT_DIR$/core/design" />
             <option value="$PROJECT_DIR$/core/remote" />
             <option value="$PROJECT_DIR$/feature" />

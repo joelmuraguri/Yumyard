@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.yumyard.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.yumyard.android.ktor.client)
+    alias(libs.plugins.yumyard.android.hilt)
     alias(libs.plugins.yumyard.android.sharedLibrary)
 
 }
