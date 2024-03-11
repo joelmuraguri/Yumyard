@@ -2,6 +2,8 @@ package com.joel.data.repos
 
 import com.joel.remote.dtos.RecipeInfoResponse
 import com.joel.remote.dtos.SearchRecipeResponse
+import com.joel.remote.dtos.RandomRecipeResponse
+
 
 interface RecipeRepository {
 
