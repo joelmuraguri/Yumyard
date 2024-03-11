@@ -2,8 +2,8 @@ package com.joel.data.repos.impl
 
 import com.joel.data.repos.RecipeRepository
 import com.joel.remote.api.RecipeRemoteSource
-import com.joel.remote.dtos.RandomRecipeResponse
 import com.joel.remote.dtos.RecipeInfoResponse
+import com.joel.remote.dtos.RandomRecipeResponse
 import com.joel.remote.dtos.SearchRecipeResponse
 import javax.inject.Inject
 

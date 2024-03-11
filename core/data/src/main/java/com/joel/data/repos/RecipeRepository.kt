@@ -1,6 +1,5 @@
 package com.joel.data.repos
 
-import com.joel.remote.dtos.RandomRecipeResponse
 import com.joel.remote.dtos.RecipeInfoResponse
 import com.joel.remote.dtos.SearchRecipeResponse
 

@@ -1,9 +1,10 @@
 package com.joel.remote.api
 
-import com.joel.remote.dtos.RandomRecipeResponse
 import com.joel.remote.dtos.RecipeInfoResponse
 import com.joel.remote.dtos.SearchRecipeResponse
 import com.joel.remote.dtos.SimilarRecipeResponse
+import com.joel.remote.dtos.RandomRecipeResponse
+
 
 interface RecipeRemoteSource {
 

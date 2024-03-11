@@ -1,10 +1,10 @@
 package com.joel.remote.api.impl
 
 import com.joel.remote.api.RecipeRemoteSource
-import com.joel.remote.dtos.RandomRecipeResponse
 import com.joel.remote.dtos.RecipeInfoResponse
 import com.joel.remote.dtos.SearchRecipeResponse
 import com.joel.remote.dtos.SimilarRecipeResponse
+import com.joel.remote.dtos.RandomRecipeResponse
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
