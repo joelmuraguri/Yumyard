@@ -1,3 +1,5 @@
+import java.util.Properties
+
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.yumyard.android.application)
@@ -10,13 +12,39 @@ plugins {
 
 }
 
+val localPropertiesFile = rootProject.file("local.properties")
+val localProperties = Properties().apply {
+    if (localPropertiesFile.exists()) {
+        localPropertiesFile.inputStream().use { stream ->
+            load(stream)
+        }
+    }
+}
+
 android {
     namespace = "com.joel.yumyard"
+
+
+    buildTypes {
+        getByName("debug") {
+            buildConfigField("String", "SPOONACULAR_API_KEY", "\"${localProperties.getProperty("SPOONACULAR_API_KEY")}\"")
+        }
+        debug {
+            // configuration for debug builds
+            buildConfigField("boolean", "DEBUG", "true")
+        }
+    }
+
+    kotlinOptions {
+        jvmTarget = "17"
+    }
 }
 
 dependencies{
     implementation(project(":core:design"))
     implementation(project(":core:remote"))
+    implementation(project(":core:data"))
+    implementation(project(":core:domain"))
     implementation(project(":feature:authentication"))
     implementation(project(":feature:discover"))
     implementation(project(":feature:search"))
