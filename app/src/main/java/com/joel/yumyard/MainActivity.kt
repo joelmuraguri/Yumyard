@@ -28,6 +28,7 @@ import com.joel.yumyard.ui.navigation.AppNavHost
 import com.joel.yumyard.ui.navigation.BottomNavigationBar
 import com.joel.yumyard.ui.navigation.Screens
 import com.joel.yumyard.ui.theme.UzitoTheme
+import dagger.hilt.android.AndroidEntryPoint
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

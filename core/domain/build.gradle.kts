@@ -16,4 +16,6 @@ android {
 dependencies {
     implementation(project(":core:remote"))
     implementation(project(":core:data"))
+
+    implementation(libs.retrofit)
 }

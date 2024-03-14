@@ -14,21 +14,21 @@ import io.ktor.client.engine.android.AndroidClientEngine
 import io.ktor.client.engine.android.AndroidEngineConfig
 import javax.inject.Singleton
 
-@Module
-@InstallIn(SingletonComponent::class)
-object RemoteModule {
-    @Provides
-    @Singleton
-    fun provideHttpClientEngine(): HttpClientEngine = AndroidClientEngine(AndroidEngineConfig())
-
-    @Provides
-    @Singleton
-    fun provideHttpClient(engine: HttpClientEngine): HttpClient = HttpClientFactory().createEngine(engine)
-
-    @Provides
-    fun providesSpoonacularAPIRemoteSource(
-        httpClient: HttpClient,
-        apiKey: String = BuildConfig.SPOONACULAR_API_KEY
-    ): RecipeRemoteSource = DefaultRecipeRemoteSource(httpClient, apiKey)
-
-}
+//@Module
+//@InstallIn(SingletonComponent::class)
+//object RemoteModule {
+//    @Provides
+//    @Singleton
+//    fun provideHttpClientEngine(): HttpClientEngine = AndroidClientEngine(AndroidEngineConfig())
+//
+//    @Provides
+//    @Singleton
+//    fun provideHttpClient(engine: HttpClientEngine): HttpClient = HttpClientFactory().createEngine(engine)
+//
+//    @Provides
+//    fun providesSpoonacularAPIRemoteSource(
+//        httpClient: HttpClient,
+//        apiKey: String = BuildConfig.SPOONACULAR_API_KEY
+//    ): RecipeRemoteSource = DefaultRecipeRemoteSource(httpClient, apiKey)
+//
+//}

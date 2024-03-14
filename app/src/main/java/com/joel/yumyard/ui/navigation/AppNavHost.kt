@@ -6,7 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.joel.authentication.onboarding.OnboardingScreen
-import com.joel.discover.DiscoverScreen
+import com.joel.yumyard.feature.discover.DiscoverScreen
 import com.joel.favourites.FavouritesScreen
 import com.joel.mealplan.MealPlanScreen
 import com.joel.mealplan.ProfileScreen

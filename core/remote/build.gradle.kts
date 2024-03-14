@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.yumyard.android.ktor.client)
     alias(libs.plugins.yumyard.android.hilt)
     alias(libs.plugins.yumyard.android.sharedLibrary)
+    alias(libs.plugins.serialization)
 
 }
 
@@ -13,4 +14,17 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+}
+
+dependencies {
+
+    implementation(libs.retrofit.kotlinx.serialization.converter)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.retrofit)
+
+
+    // OkHttp
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.interceptor)
+    testImplementation(libs.okhttp.mockwebserver)
 }

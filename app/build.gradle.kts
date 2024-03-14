@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.yumyard.android.hilt)
     alias(libs.plugins.yumyard.android.room)
     alias(libs.plugins.yumyard.android.ktor.client)
+    alias(libs.plugins.serialization)
 
 }
 
@@ -52,4 +53,13 @@ dependencies{
     implementation(project(":feature:favourites"))
     implementation(project(":feature:search"))
     implementation(project(":feature:profile"))
+
+    implementation(libs.retrofit.kotlinx.serialization.converter)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.retrofit)
+
+    // OkHttp
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.interceptor)
+    testImplementation(libs.okhttp.mockwebserver)
 }

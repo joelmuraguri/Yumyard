@@ -9,7 +9,7 @@ import com.joel.remote.dtos.RandomRecipeResponse
 interface RecipeRemoteSource {
 
     suspend fun getRandomRecipes(
-        includedTags : List<String>,
+        includedTags : String,
     ) : RandomRecipeResponse
 
     suspend fun getRecipeInfo(
