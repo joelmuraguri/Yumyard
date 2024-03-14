@@ -3,7 +3,6 @@ plugins {
     alias(libs.plugins.yumyard.android.compose)
     alias(libs.plugins.yumyard.android.sharedLibrary)
     alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.yumyard.android.hilt)
 }
 
 android {

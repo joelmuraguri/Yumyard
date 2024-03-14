@@ -3,7 +3,6 @@ package com.joel.yumyard
 import android.app.Application
 import com.joel.yumyard.di.AppDataContainer
 import com.joel.yumyard.di.DefaultAppContainer
-import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 
 class RecipeApp : Application() {
