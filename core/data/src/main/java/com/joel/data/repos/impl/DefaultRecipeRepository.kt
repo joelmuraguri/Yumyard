@@ -10,18 +10,22 @@ class DefaultRecipeRepository(
     private val recipeRemoteSource : RecipeRemoteSource
 ) : RecipeRepository {
 
-    override suspend fun getRandomByCusinesRecipes(): RandomRecipeResponse {
+    override suspend fun getRandomByCuisinesRecipes(cuisine : String): RandomRecipeResponse {
         return recipeRemoteSource.getRandomRecipes(
-            includedTags = "dessert"
+            includedTags = cuisine
         )
     }
 
-    override suspend fun getRandomByMealTypesRecipes(includedTags: List<String>): RandomRecipeResponse {
-        TODO("Not yet implemented")
+    override suspend fun getRandomByMealTypesRecipes(mealType : String): RandomRecipeResponse {
+        return recipeRemoteSource.getRandomRecipes(
+            includedTags = mealType
+        )
     }
 
-    override suspend fun getRandomWithoutIntoleranceRecipes(excludeTags: List<String>): RandomRecipeResponse {
-        TODO("Not yet implemented")
+    override suspend fun getRandomByDietRecipes(diet : String): RandomRecipeResponse {
+        return recipeRemoteSource.getRandomRecipes(
+            includedTags = diet
+        )
     }
 
     override suspend fun getRecipeInfo(id: Int): RecipeInfoResponse {

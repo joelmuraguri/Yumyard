@@ -7,15 +7,16 @@ import com.joel.remote.dtos.RandomRecipeResponse
 
 interface RecipeRepository {
 
-    suspend fun getRandomByCusinesRecipes(
+    suspend fun getRandomByCuisinesRecipes(
+        cuisine : String
     ) : RandomRecipeResponse
 
     suspend fun getRandomByMealTypesRecipes(
-        includedTags : List<String>,
+        mealType : String,
     ) : RandomRecipeResponse
 
-    suspend fun getRandomWithoutIntoleranceRecipes(
-        excludeTags : List<String>,
+    suspend fun getRandomByDietRecipes(
+        diet : String,
     ) : RandomRecipeResponse
 
     suspend fun getRecipeInfo(

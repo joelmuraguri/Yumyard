@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.joel.domain.model.Recipe
 import com.joel.domain.usecase.recipe.RecipeUseCases
 import com.joel.domain.utils.Resource
 import com.joel.yumyard.RecipeApp
@@ -21,40 +22,80 @@ class DiscoverViewModel(
     val state: State<DiscoverScreenState> = _state
 
     init {
-        getRandomRecipes()
+        refreshAll()
     }
 
+    private fun refreshAll() {
+        getRandomDietsRecipes()
+        getRandomMealTypesRecipes()
+        getRandomCuisinesRecipes()
+    }
 
-    private fun getRandomRecipes(){
-        recipeUseCase.getRandomRecipesUseCase().onEach { resource ->
-            when(resource){
-                is Resource.Error -> {
-                    _state.value = DiscoverScreenState(
-                        error = resource.message ?: "An unexpected error occurred"
-                    )
-                }
-                is Resource.Loading -> {
-                    _state.value = DiscoverScreenState(
-                        loading = true
-                    )
-
-                }
-                is Resource.Success -> {
-                    _state.value = DiscoverScreenState(
-                        recipes = resource.data ?: emptyList()
-                    )
-                }
+    fun onEvents(events: DiscoverEvents){
+        when(events){
+            is DiscoverEvents.SelectedCuisines -> {
+                _state.value = DiscoverScreenState(
+                    selectedCuisines = events.cuisine
+                )
             }
-        }.launchIn(viewModelScope)
-    }
-
-    companion object {
-        val Factory: ViewModelProvider.Factory = viewModelFactory {
-            initializer {
-                val application = (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY] as RecipeApp)
-                val recipeUseCase = application.container.recipeUseCases
-                DiscoverViewModel(recipeUseCase = recipeUseCase)
+            is DiscoverEvents.SelectedDiets -> {
+                _state.value = DiscoverScreenState(
+                    selectedDiets = events.diet
+                )
+            }
+            is DiscoverEvents.SelectedMealType -> {
+                _state.value = DiscoverScreenState(
+                    selectedMealType = events.mealType
+                )
             }
         }
     }
+
+    private fun getRandomMealTypesRecipes() {
+        recipeUseCase.getRandomMealTypesRecipesUseCase(_state.value.selectedMealType)
+            .onEach { resource ->
+                handleResource(resource) { recipes ->
+                    _state.value = _state.value.copy(recipesMealTypes = recipes,loading = false)
+                }
+            }.launchIn(viewModelScope)
+    }
+
+    private fun getRandomCuisinesRecipes() {
+        recipeUseCase.getRandomCuisinesRecipesUseCase(_state.value.selectedCuisines)
+            .onEach { resource ->
+                handleResource(resource) { recipes ->
+                    _state.value = _state.value.copy(recipesCuisines = recipes,  loading = false)
+                }
+            }.launchIn(viewModelScope)
+    }
+
+    private fun getRandomDietsRecipes() {
+        recipeUseCase.getRandomDietsRecipesUseCase(_state.value.selectedDiets)
+            .onEach { resource ->
+                handleResource(resource) { recipes ->
+                    _state.value = _state.value.copy(recipesDiets = recipes, loading = false)
+                }
+            }.launchIn(viewModelScope)
+    }
+
+    private inline fun handleResource(
+        resource: Resource<List<Recipe>>,
+        onSuccess: (List<Recipe>) -> Unit
+    ) {
+        when (resource) {
+            is Resource.Error -> {
+                _state.value = _state.value.copy(
+                    loading = false,
+                    error = resource.message ?: "An unexpected error occurred"
+                )
+            }
+            is Resource.Loading -> {
+                _state.value = _state.value.copy(loading = true)
+            }
+            is Resource.Success -> {
+                onSuccess(resource.data ?: emptyList())
+            }
+        }
+    }
+
 }

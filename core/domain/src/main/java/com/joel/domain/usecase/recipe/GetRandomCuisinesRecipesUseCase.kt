@@ -9,14 +9,14 @@ import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import java.io.IOException
 
-class GetRandomRecipesUseCase(
+class GetRandomCuisinesRecipesUseCase(
     private val repository: RecipeRepository
 ) {
 
-    operator fun invoke() : Flow<Resource<List<Recipe>>> = flow {
+    operator fun invoke(cuisine : String) : Flow<Resource<List<Recipe>>> = flow {
         try {
             emit(Resource.Loading())
-            val randomRecipes = repository.getRandomByCusinesRecipes()
+            val randomRecipes = repository.getRandomByCuisinesRecipes(cuisine)
             val recipes = randomRecipes.recipes.map { it.toRecipeDomainModel() }
             emit(Resource.Success(recipes))
         }

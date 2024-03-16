@@ -14,7 +14,7 @@ interface RecipeService {
     suspend fun getRandomRecipes(
         @Query("include-tags") includedTags : String,
         @Query("apiKey") apiKey : String,
-        @Query("number") number : Int = 1
+        @Query("number") number : Int = 15
     ) : RandomRecipeResponse
 
     @GET("/recipes/{id}/information")

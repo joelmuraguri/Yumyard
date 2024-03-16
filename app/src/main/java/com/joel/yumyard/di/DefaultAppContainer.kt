@@ -3,7 +3,9 @@ package com.joel.yumyard.di
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.joel.data.repos.RecipeRepository
 import com.joel.data.repos.impl.DefaultRecipeRepository
-import com.joel.domain.usecase.recipe.GetRandomRecipesUseCase
+import com.joel.domain.usecase.recipe.GetRandomCuisinesRecipesUseCase
+import com.joel.domain.usecase.recipe.GetRandomDietsRecipesUseCase
+import com.joel.domain.usecase.recipe.GetRandomMealTypesRecipesUseCase
 import com.joel.domain.usecase.recipe.RecipeUseCases
 import com.joel.remote.api.RecipeRemoteSource
 import com.joel.remote.api.RecipeService
@@ -26,6 +28,7 @@ class DefaultAppContainer : AppDataContainer {
 
     private val spoonacularBaseUrl = "https://api.spoonacular.com"
 
+    private val json = Json { ignoreUnknownKeys = true }
 
     private val client : OkHttpClient = OkHttpClient.Builder()
         .connectTimeout(10L, TimeUnit.SECONDS)
@@ -35,7 +38,7 @@ class DefaultAppContainer : AppDataContainer {
         .build()
 
     private val retrofit: Retrofit = Retrofit.Builder()
-        .addConverterFactory(Json.asConverterFactory("application/json".toMediaType()))
+        .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
         .client(client)
         .baseUrl(spoonacularBaseUrl)
         .build()
@@ -56,10 +59,11 @@ class DefaultAppContainer : AppDataContainer {
         DefaultRecipeRepository(recipeRemoteSource)
     }
 
-
     override val recipeUseCases: RecipeUseCases by lazy {
         RecipeUseCases(
-            getRandomRecipesUseCase = GetRandomRecipesUseCase(recipeRepository)
+            getRandomCuisinesRecipesUseCase = GetRandomCuisinesRecipesUseCase(recipeRepository),
+            getRandomDietsRecipesUseCase = GetRandomDietsRecipesUseCase(recipeRepository),
+            getRandomMealTypesRecipesUseCase = GetRandomMealTypesRecipesUseCase(recipeRepository)
         )
     }
 
